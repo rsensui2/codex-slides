@@ -19,7 +19,7 @@ export default function TopBar({ workspace = "Codex Slides" }: { workspace?: str
       <div className="brand-lockup">
         <a
           className="product-lockup"
-          href="https://github.com/nexu-io/codex-slides"
+          href="https://github.com/rsensui2/codex-slides"
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${workspace} on GitHub (opens in a new tab)`}

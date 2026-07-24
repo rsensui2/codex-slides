@@ -28,7 +28,7 @@ export interface QuestionSpec {
 
 export function buildOnboardPrompt(
   requirement: string,
-  uiLocale: UiLocale = "zh-CN",
+  uiLocale: UiLocale = "ja",
   scenarioId?: string,
   attachmentNames: string[] = [],
 ): string {
@@ -114,7 +114,7 @@ export function normalizeQuestions(raw: any): QuestionSpec[] {
 export async function generateOnboardQuestions(
   requirement: string,
   signal?: AbortSignal,
-  uiLocale: UiLocale = "zh-CN",
+  uiLocale: UiLocale = "ja",
   scenarioId?: string,
   onQuestion?: (question: QuestionSpec, index: number) => void,
   attachments: CodexInputAttachment[] = [],

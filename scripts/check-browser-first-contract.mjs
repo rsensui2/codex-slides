@@ -41,7 +41,11 @@ assert.ok(
   manifest.version.startsWith(`${packageManifest.version}+codex.`),
   `plugin version ${manifest.version} must track package version ${packageManifest.version}`,
 );
-assert.ok(manifest.interface.defaultPrompt.some((prompt) => /Browser.*step by step/i.test(prompt)));
+assert.ok(
+  manifest.interface.defaultPrompt.some(
+    (prompt) => /(?:Browser|ブラウザ).*(?:step by step|段階的)/i.test(prompt),
+  ),
+);
 assert.ok(manifest.interface.capabilities.includes("Guided project checkpoints"));
 assert.ok(manifest.interface.capabilities.includes("Durable run start, status, wait, and cancel"));
 

@@ -1,7 +1,7 @@
 {
   "name": "codex-slides",
-  "version": "0.1.0+codex.20260713",
-  "description": "Run a guided, Browser-first slide workflow in Codex, with durable projects, reusable project templates, Design Files, brand systems, desktop apps, editing, and export.",
+  "version": "0.2.1+codex.20260724",
+  "description": "Codex内で日本語優先のスライド制作を進めます。要件確認、調査、構成、デザイン、生成、編集、発表、書き出しまでをブラウザで確認できます。",
   "author": {
     "name": "Codex Slides"
   },
@@ -18,10 +18,10 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "Codex Slides",
-    "shortDescription": "Build decks step by step in a live Codex Browser workspace.",
-    "longDescription": "Codex Slides gives Codex a Browser-first slide workflow plus portable Agent Skills and 38 typed MCP tools. Codex opens the product before generation, creates a durable project, tracks navigation-independent runs, and keeps requirements, research, outline approval, visual direction, rendering, editing, verification, speaker notes, project templates, dual-window presenting, and export visible and steerable through exact Browser handoffs. The same local-first workspace ships for web, macOS, Windows, and Linux.",
-    "developerName": "Codex Slides",
+    "displayName": "Codex Slides 日本語版",
+    "shortDescription": "日本語を既定にしたライブワークスペースで、スライドを段階的に作成します。",
+    "longDescription": "Codex Slides 日本語版は、画面表示・確認質問・進捗・スライド生成を日本語優先にしたBrowser-firstの制作環境です。要件確認、調査、アウトライン承認、ビジュアル方針、生成、編集、発表者ノート、テンプレート、プレゼン、PDF/PPTX書き出しまでを同じローカルワークスペースで確認・操作できます。英語と簡体字中国語への切替も維持しています。",
+    "developerName": "Codex Slides / rsensui2",
     "category": "Productivity",
     "composerIcon": "./assets/codex-slides-composer-icon.png",
     "logo": "./assets/codex-slides-logo.png",
@@ -52,11 +52,11 @@
     ],
     "brandColor": "#6D5EF8",
     "defaultPrompt": [
-      "Open Codex Slides in the Codex Browser and keep it visible while we create a project step by step.",
-      "Open the Codex Slides home screen, start a project from my request, and let me review the questions, outline, and style before rendering.",
-      "Show me the scenario catalog in the Browser and create the project through the live UI using my source files.",
-      "Open this deck's Design Files or brand design system and update it in the live workspace.",
-      "Edit my latest deck and verify the result in the Browser."
+      "Codex Slidesをブラウザで開き、画面を表示したまま日本語のプロジェクトを段階的に作成してください。",
+      "私の依頼からプロジェクトを開始し、生成前に日本語の確認質問、アウトライン、デザイン方針をレビューさせてください。",
+      "用途カタログをブラウザで表示し、添付資料を使って日本語のプロジェクトをライブUIから作成してください。",
+      "このデッキのDesign Filesまたはブランドデザインシステムを開き、日本語のライブワークスペースで更新してください。",
+      "最新のデッキを日本語で編集し、結果をブラウザで確認してください。"
     ]
   }
 }

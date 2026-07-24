@@ -65,7 +65,7 @@ const jobs = globalRuns.__codexSlidesProjectRuns
   ?? (globalRuns.__codexSlidesProjectRuns = new Map<string, RunningJob>());
 
 function localeOf(value: unknown): UiLocale {
-  return isUiLocale(value) ? value : "zh-CN";
+  return isUiLocale(value) ? value : "ja";
 }
 
 function tr(locale: UiLocale, key: MessageKey, values: MessageValues = {}) {
@@ -919,7 +919,7 @@ export function sanitizeProjectRunInput(raw: any): ProjectRunInput | null {
     : null;
   if (!kind) return null;
   const conversationId = String(raw?.conversationId ?? "").trim().slice(0, 120) || undefined;
-  const locale = isUiLocale(raw?.locale) ? raw.locale : "zh-CN";
+  const locale = isUiLocale(raw?.locale) ? raw.locale : "ja";
   if (kind === "render") return { kind, conversationId, locale };
   if (kind === "mark") {
     const index = Math.trunc(Number(raw?.mark?.index));

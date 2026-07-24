@@ -2,16 +2,16 @@
   <img src="docs/assets/readme/hero.png" alt="Codex Slides — the open-source AI slide studio inside your coding agent, operated in the Codex in-app Browser" width="960" />
 </p>
 
-<h1 align="center">Codex Slides</h1>
+<h1 align="center">Codex Slides 日本語版</h1>
 
 <p align="center">
-  <strong>The open-source AI slide studio that lives inside Codex.</strong><br />
-  Turn a prompt, a repo, or a pile of files into a beautiful, presentation-ready deck — without leaving your coding agent.
+  <strong>Codexの中で使える、オープンソースのAIスライドスタジオ。</strong><br />
+  プロンプト、リポジトリ、手元の資料から、プレゼンに使えるスライドを日本語で作成できます。
 </p>
 
 <p align="center">
-  <strong>⚡ 10+ high-quality slides in ~4–5 minutes</strong> — Fast mode renders every page in parallel, not one by one<br />
-  45 deck templates · 73 community styles · 24 guided scenarios → production-ready <strong>PPTX / PDF</strong> · Browser-first · zero separate API keys · web &amp; desktop
+  <strong>⚡ 10枚以上の高品質スライドを約4〜5分で生成</strong> — Fast modeで全ページを並列レンダリング<br />
+  45種類のテンプレート · 73種類のコミュニティスタイル · 24種類のガイド付きシナリオ → <strong>PPTX / PDF</strong> · 追加APIキー不要
 </p>
 
 <p align="center">
@@ -25,53 +25,45 @@
 
 ---
 
-**Codex Slides is an open-source slide studio built for coding agents.** Describe a deck, point
-it at a repo or a folder of files, and watch your local Codex research, outline, style, render,
-and export a presentation — every slide a full visual canvas, all of it visible and steerable,
-none of it a hidden background task.
+このリポジトリは [nexu-io/codex-slides](https://github.com/nexu-io/codex-slides) を基にした
+日本語優先版です。元プロジェクトの機能とMITライセンスを維持しながら、次の項目を日本語向けに
+調整しています。
 
-Think of it as the **open-source, agent-native alternative to Gamma and Tome** — except it
-lives inside the coding agent you already use, runs on your existing `codex login` with zero
-extra API keys, and keeps every project on your own disk.
+- UIの初期表示を日本語に設定
+- 新規プロジェクトのスライド言語を日本語に設定
+- 確認質問、進行状況、オンボーディングを日本語で表示
+- Codexプラグインの説明と既定プロンプトを日本語化
+- 英語・中国語への切り替え機能はそのまま利用可能
 
-**What you get, out of the box:**
-
-- **118 ready-made visual systems** — **45 curated deck templates** across 15 professional
-  categories, plus **73 community styles** across 12 groups (reports, infographics, diagrams,
-  data & maps, dashboards, posters, product, brand, architecture, photography, editorial,
-  illustration).
-- **24 guided scenarios** in 6 groups — zero-to-one decks, source-to-slides, data stories,
-  deep research, redesign, localization, training, keynotes, and more.
-- **⚡ Fast mode** — renders every page **in parallel** (not one-by-one), so a **10+ slide deck
-  lands in ~4–5 minutes** while the outline and visual direction stay locked.
-- **Production export** — real, presentation-ready **PPTX** and print-ready **PDF** with
-  speaker notes preserved; 1K/2K/4K render quality and five aspect ratios (16:9, 4:3, 1:1,
-  9:16, 3:4).
-- **Zero extra keys** — runs on your existing `codex login`; every project stays on your disk.
+Codexに作りたい資料を伝えると、調査、構成、デザイン、レンダリング、書き出しまでを
+同じプロジェクト上で進められます。生成途中の質問、アウトライン、ビジュアル方針を
+確認しながら調整でき、完成した資料はPPTXまたはPDFで書き出せます。
 
 ```text
-Open Codex Slides in the Codex Browser and keep it visible.
-Create a 12-slide market deck about 2026 humanoid robotics.
-Let me confirm the questions, outline, and visual direction before rendering.
+Codex Slidesを開いてください。
+2026年のヒューマノイドロボット市場について、12枚の日本語スライドを作ってください。
+レンダリング前に、確認質問、アウトライン、ビジュアル方針を確認させてください。
 ```
 
-### Try it in 60 seconds
+### 60秒でインストール
 
 ```bash
-codex plugin marketplace add nexu-io/codex-slides
+codex plugin marketplace add rsensui2/codex-slides
 codex plugin add codex-slides@codex-slides
 ```
 
-Then start a new Codex task: *“Open Codex Slides and build me a 6-slide deck about …”* — and
-watch it happen live.
+インストール後、新しいCodexタスクで「Codex Slidesを開いて、○○について6枚の
+日本語スライドを作って」と依頼してください。
 
-> Like what you see? **[Give it a ⭐](#star-codex-slides)** — one click is the fastest way to
-> help the next developer find Codex Slides.
+> このフォークでは日本語を初期値にしています。既存プロジェクトの設定や言語切り替えは
+> 引き続き利用できます。
 
-> **Writing about Codex Slides?** Everything a creator or reporter needs — boilerplate, stats,
-> comparisons, an FAQ, ready-to-post copy in English / 中文 / 日本語, a video script, and an asset
-> manifest — is in the **[Media & creator kit](docs/MEDIA_KIT.md)**. Paste it into your agent and
-> it can write the video or article for you.
+> スライドは画像ベースでPPTXに書き出されます。PowerPoint上で個々の図形や文字を直接
+> 編集する方式ではありません。
+
+---
+
+以下は上流プロジェクトの詳しいドキュメント（英語）です。
 
 ## Contents
 
@@ -519,7 +511,7 @@ This repository includes a Codex marketplace manifest, so the repository itself 
 as a plugin source:
 
 ```bash
-codex plugin marketplace add nexu-io/codex-slides
+codex plugin marketplace add rsensui2/codex-slides
 codex plugin add codex-slides@codex-slides
 ```
 
@@ -542,7 +534,7 @@ for the marketplace layout and reload behavior.
 ### Install from a local checkout
 
 ```bash
-git clone https://github.com/nexu-io/codex-slides.git
+git clone https://github.com/rsensui2/codex-slides.git
 cd codex-slides
 codex plugin marketplace add "$PWD"
 codex plugin add codex-slides@codex-slides
@@ -729,7 +721,7 @@ The full Browser/CLI/MCP parity contract lives in
 ## Local development
 
 ```bash
-git clone https://github.com/nexu-io/codex-slides.git
+git clone https://github.com/rsensui2/codex-slides.git
 cd codex-slides
 corepack enable
 pnpm install
@@ -864,7 +856,7 @@ a coding agent. Priorities are grouped by horizon and may shift with community f
 | 🔭 Exploring | Theme marketplace and per-organization brand kits |
 | 🔭 Exploring | Video/animated slide export and speaker-rehearsal mode |
 
-Have a request? Open a [GitHub Issue](https://github.com/nexu-io/codex-slides/issues) or start
+Have a request? Open a [GitHub Issue](https://github.com/rsensui2/codex-slides/issues) or start
 a discussion — roadmap items are prioritized in the open.
 
 ## Community style library and licenses
@@ -1037,7 +1029,7 @@ Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md), which 
 architecture boundaries, i18n, Skill/MCP parity, visual QA, tests, and pull-request
 expectations.
 
-- Use [GitHub Issues](https://github.com/nexu-io/codex-slides/issues) for bugs and feature
+- Use [GitHub Issues](https://github.com/rsensui2/codex-slides/issues) for bugs and feature
   proposals.
 - Use GitHub private vulnerability reporting for security issues; see [SECURITY.md](SECURITY.md).
 - Be respectful and constructive; see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).

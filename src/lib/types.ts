@@ -143,7 +143,7 @@ export const DEFAULT_CONFIG: PptConfig = {
   requirement: "",
   aspect: "16:9",
   pages: 6,
-  language: "auto",
+  language: "ja",
   style: "",
   resolution: "2K",
   engine: "codex",

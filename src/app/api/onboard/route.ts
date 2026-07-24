@@ -11,7 +11,7 @@ export const maxDuration = 120;
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const requirement = String(body?.requirement ?? "").trim();
-  const uiLocale = isUiLocale(body?.uiLocale) ? body.uiLocale : "zh-CN";
+  const uiLocale = isUiLocale(body?.uiLocale) ? body.uiLocale : "ja";
   const scenarioId = String(body?.scenarioId ?? "");
   const projectId = String(body?.projectId ?? "").trim();
   if (!requirement) {

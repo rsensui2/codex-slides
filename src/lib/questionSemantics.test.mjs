@@ -35,6 +35,16 @@ test("resolution fallback keeps canonical values in every locale", () => {
   }
 });
 
+test("resolution fallback defaults to Japanese", () => {
+  const questions = ensureRequiredOnboardQuestions([]);
+  assert.equal(questions[0].question, "出力解像度はどれにしますか？");
+  assert.deepEqual(questions[0].options?.map((option) => option.label), [
+    "1K · 標準",
+    "2K · 高画質",
+    "4K · 超高画質",
+  ]);
+});
+
 test("missing output quality is inserted after aspect with a 2K default", () => {
   const questions = ensureRequiredOnboardQuestions([
     { id: "pages", question: "Pages?", type: "number", recommended: "8", field: "pages" },

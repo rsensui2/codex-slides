@@ -95,7 +95,7 @@ export function resolutionQuestionCopy(locale: QuestionCopyLocale) {
 /** The model is steerable, not authoritative: required render quality must not disappear. */
 export function ensureRequiredOnboardQuestions<T extends SemanticOnboardQuestion>(
   questions: T[],
-  locale: QuestionCopyLocale = "zh-CN",
+  locale: QuestionCopyLocale = "ja",
 ): T[] {
   if (questions.some((question) => specificationField(question) === "resolution")) {
     return questions.slice(0, 7);

@@ -4,16 +4,16 @@
   "version": "0.2.1",
   "private": true,
   "main": "electron/main.cjs",
-  "description": "Codex Slides — the open-source AI slide studio inside Codex, with durable projects, image-native decks, visual editing, and PDF/PPTX export.",
+  "description": "Codex Slides 日本語版 — Codex内で調査・構成・生成・編集・発表・PDF/PPTX書き出しまで行えるオープンソースAIスライドスタジオ。",
   "license": "MIT",
   "author": "Nexu and Codex Slides contributors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nexu-io/codex-slides.git"
+    "url": "git+https://github.com/rsensui2/codex-slides.git"
   },
-  "homepage": "https://github.com/nexu-io/codex-slides#readme",
+  "homepage": "https://github.com/rsensui2/codex-slides#readme",
   "bugs": {
-    "url": "https://github.com/nexu-io/codex-slides/issues"
+    "url": "https://github.com/rsensui2/codex-slides/issues"
   },
   "keywords": [
     "codex",

@@ -32,7 +32,7 @@ export function buildWorkflowProgress({
   rendered = 0,
   total = 0,
   renderDetail,
-  locale = "zh-CN",
+  locale = "ja",
 }: {
   stage: PresentationWorkflowStage;
   clarifyBusy?: boolean;
