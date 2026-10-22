@@ -5,7 +5,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /** Save the exact marked-up slide before the slower image edit starts. */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
 

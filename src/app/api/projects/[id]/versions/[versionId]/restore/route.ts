@@ -7,8 +7,9 @@ export const dynamic = "force-dynamic";
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string; versionId: string } },
+  { params: paramsPromise }: { params: Promise<{ id: string; versionId: string }> },
 ) {
+  const params = await paramsPromise;
   if (!loadProject(params.id)) return NextResponse.json({ error: "project not found" }, { status: 404 });
   const body = await req.json().catch(() => ({}));
   try {

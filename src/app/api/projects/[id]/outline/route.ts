@@ -20,7 +20,8 @@ function coercePoints(raw: any): string[] {
 }
 
 /** Replace the outline with an edited list of pages (draft only, drops images). */
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const incoming = Array.isArray(body?.pages) ? body.pages : [];
   const pages: SlidePage[] = incoming
@@ -40,7 +41,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 /** Natural-language outline revision (add/remove/reorder/rewrite). */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const message = String(body?.message ?? "").trim();
   if (!message) return NextResponse.json({ error: "message required" }, { status: 400 });

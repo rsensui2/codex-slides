@@ -20,14 +20,16 @@ function responseShape(project: NonNullable<ReturnType<typeof loadProject>>) {
   };
 }
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json(responseShape(project));
 }
 
 /** Merge a partial system, attach brand assets, or clear the always-on system. */
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "not found" }, { status: 404 });

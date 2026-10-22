@@ -9,7 +9,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 600;
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   if (!loadProject(params.id)) {
     return new Response(JSON.stringify({ error: "project not found" }), {
       status: 404,

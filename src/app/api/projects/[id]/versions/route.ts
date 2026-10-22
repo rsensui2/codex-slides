@@ -21,7 +21,8 @@ function promptSource(value: unknown): DeckVersionPromptSource | undefined {
     : undefined;
 }
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
   try {
@@ -40,7 +41,8 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
 }
 
 /** Explicit snapshot endpoint for CLI/MCP and grouped multi-step mutations. */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });

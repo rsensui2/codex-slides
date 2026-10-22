@@ -16,7 +16,8 @@ function attachmentName(base: string, extension: "pdf" | "pptx") {
   return `attachment; filename="${fallback}.${extension}"; filename*=UTF-8''${encodeURIComponent(unicodeName)}`;
 }
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return new Response("not found", { status: 404 });
   const format = new URL(req.url).searchParams.get("format") ?? "pdf";

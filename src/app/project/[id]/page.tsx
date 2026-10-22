@@ -5,13 +5,15 @@ import { loadProject } from "@/lib/store";
 export const dynamic = "force-dynamic";
 
 /** Project workspace: chat feed + live slide preview + filmstrip (per-page editing). */
-export default function ProjectPage({
-  params,
-  searchParams,
+export default async function ProjectPage({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
 }: {
-  params: { id: string };
-  searchParams?: Record<string, string | string[] | undefined>;
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const params = await paramsPromise;
+  const searchParams = await searchParamsPromise;
   // Next's page params can retain percent-encoding for non-ASCII slugs even
   // though route-handler params are decoded. Normalize here so decks created
   // with Chinese/Japanese/etc. titles can be reopened from their preview URL.

@@ -16,7 +16,8 @@ function versionInput(body: any, prompt: string, label: string) {
   };
 }
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
@@ -109,7 +110,8 @@ export async function POST(req: Request, { params }: { params: { id: string } })
   return NextResponse.json({ error: "unsupported action" }, { status: 400 });
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });

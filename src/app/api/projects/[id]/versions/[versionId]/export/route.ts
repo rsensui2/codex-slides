@@ -19,8 +19,9 @@ function attachmentName(base: string, extension: "pdf" | "pptx") {
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string; versionId: string } },
+  { params: paramsPromise }: { params: Promise<{ id: string; versionId: string }> },
 ) {
+  const params = await paramsPromise;
   try {
     const detail = readDeckVersion(params.id, params.versionId);
     const format = new URL(req.url).searchParams.get("format") === "pptx" ? "pptx" : "pdf";

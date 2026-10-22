@@ -29,7 +29,8 @@ function requestedIndex(value: unknown): number | undefined {
   return Number.isInteger(index) && index > 0 ? index : Number.NaN;
 }
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
   const index = requestedIndex(new URL(req.url).searchParams.get("index"));
@@ -44,7 +45,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 }
 
 /** Set one note or several notes directly. Empty strings intentionally clear. */
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
   const body = await req.json().catch(() => ({}));
@@ -94,7 +96,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 /** Generate the current slide or a coherent full-deck talk track with AI. */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
   const body = await req.json().catch(() => ({}));
