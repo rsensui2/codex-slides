@@ -14,7 +14,8 @@ export const maxDuration = 600;
  *   source: unique filename of the already-saved annotated slide screenshot.
  *   image:  legacy fallback containing the annotated screenshot directly.
  */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const startedAt = Date.now();
   const form = await req.formData().catch(() => null);
   if (!form) return NextResponse.json({ error: "expected multipart form" }, { status: 400 });

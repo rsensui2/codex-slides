@@ -192,7 +192,8 @@ function sanitizeConversations(raw: unknown): StoredConversation[] {
 }
 
 /** Persist one or many conversations so reopening the project restores the dialogue. */
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const chat = sanitizeMessages(body?.messages);
   const conversations = sanitizeConversations(body?.conversations);
@@ -248,7 +249,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 /** Classify a natural-language edit into a plan. Execution happens via /regenerate. */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const message = String(body?.message ?? "").trim();
   if (!message) return NextResponse.json({ error: "message required" }, { status: 400 });

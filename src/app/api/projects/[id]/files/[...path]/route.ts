@@ -12,7 +12,8 @@ function downloadHeader(file: string) {
   return `attachment; filename*=UTF-8''${encodeURIComponent(path.basename(file))}`;
 }
 
-export async function GET(req: Request, { params }: { params: { id: string; path: string[] } }) {
+export async function GET(req: Request, { params: paramsPromise }: { params: Promise<{ id: string; path: string[] }> }) {
+  const params = await paramsPromise;
   const file = resolve(params.id, params.path);
   if (!file || !fs.existsSync(file) || !fs.statSync(file).isFile()) return NextResponse.json({ error: "not found" }, { status: 404 });
   const ext = path.extname(file).toLowerCase();
@@ -51,7 +52,8 @@ export async function GET(req: Request, { params }: { params: { id: string; path
   });
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string; path: string[] } }) {
+export async function PUT(req: Request, { params: paramsPromise }: { params: Promise<{ id: string; path: string[] }> }) {
+  const params = await paramsPromise;
   const file = resolve(params.id, params.path);
   if (!file || !fs.existsSync(file)) return NextResponse.json({ error: "not found" }, { status: 404 });
   const body = await req.json().catch(() => null);

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { ClockCounterClockwise } from "@phosphor-icons/react";
 import ChatColumn, { type ChatMsg } from "@/components/ChatColumn";
 import Composer from "@/components/Composer";
@@ -121,20 +122,17 @@ function checkpointMaterials(project: Project): ContextItem[] {
   }));
 }
 
-interface HomeSearchParams {
-  resume?: string | string[];
-  [key: string]: string | string[] | undefined;
+export default function Home() {
+  return <Suspense fallback={null}><HomeContent /></Suspense>;
 }
 
-export default function Home({ searchParams }: { searchParams?: HomeSearchParams }) {
+function HomeContent() {
   const { locale, t } = useI18n();
-  const resumeId = typeof searchParams?.resume === "string" ? searchParams.resume.trim() : "";
-  const resumeContinuationQuery = Object.entries(searchParams ?? {}).reduce((query, [key, value]) => {
-    if (key === "resume") return query;
-    if (Array.isArray(value)) value.forEach((item) => query.append(key, item));
-    else if (typeof value === "string") query.set(key, value);
-    return query;
-  }, new URLSearchParams()).toString();
+  const searchParams = useSearchParams();
+  const resumeId = searchParams?.get("resume")?.trim() ?? "";
+  const continuationParams = new URLSearchParams(searchParams?.toString() ?? "");
+  continuationParams.delete("resume");
+  const resumeContinuationQuery = continuationParams.toString();
   const [config, setConfig] = useState<PptConfig>({ ...DEFAULT_CONFIG, requirement: "" });
   const [engines, setEngines] = useState<EngineInfo[]>([]);
   const [projectTemplates, setProjectTemplates] = useState<ProjectTemplateSummary[]>([]);

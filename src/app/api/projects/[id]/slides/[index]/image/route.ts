@@ -7,8 +7,9 @@ export const dynamic = "force-dynamic";
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string; index: string } },
+  { params: paramsPromise }: { params: Promise<{ id: string; index: string }> },
 ) {
+  const params = await paramsPromise;
   const index = Number(params.index);
   const form = await req.formData();
   const image = form.get("image");

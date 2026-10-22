@@ -7,14 +7,16 @@ import { listProjectFiles, loadProjectFileReferences, uniqueUploadPath } from "@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "not found" }, { status: 404 });
   syncProjectFiles(project);
   return NextResponse.json({ files: listProjectFiles(params.id) });
 }
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   if (!loadProject(params.id)) return NextResponse.json({ error: "not found" }, { status: 404 });
   if (req.headers.get("content-type")?.includes("application/json")) {
     const body = await req.json().catch(() => ({}));

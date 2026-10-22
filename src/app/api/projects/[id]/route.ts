@@ -9,7 +9,8 @@ import { loadProject, saveProject } from "@/lib/store";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json(project);
@@ -17,7 +18,8 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
 
 /** Re-tune an existing deck: change template / style, add materials. Then the
  *  caller regenerates slides (which read the updated project.config). */
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => ({}));
   const project = loadProject(params.id);
   if (!project) return NextResponse.json({ error: "not found" }, { status: 404 });

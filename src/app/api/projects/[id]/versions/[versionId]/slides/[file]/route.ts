@@ -5,8 +5,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string; versionId: string; file: string } },
+  { params: paramsPromise }: { params: Promise<{ id: string; versionId: string; file: string }> },
 ) {
+  const params = await paramsPromise;
   try {
     const bytes = readDeckVersionImage(params.id, params.versionId, params.file);
     if (!bytes) return new Response("not found", { status: 404 });

@@ -13,7 +13,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 /** Read the canonical project and revive a persisted run after a local server reload. */
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const project = ensureProjectRun(params.id);
   if (!project) return NextResponse.json({ error: "project not found" }, { status: 404 });
   const runId = new URL(req.url).searchParams.get("runId")?.trim() || undefined;
@@ -28,7 +29,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
 /** Start a detached project job. The response returns immediately; progress is
  * persisted in project.json and can be polled after leaving the workspace. */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const body = await req.json().catch(() => null);
   const input = sanitizeProjectRunInput(body);
   if (!input) return NextResponse.json({ error: "invalid project run" }, { status: 400 });
@@ -56,7 +58,8 @@ export async function POST(req: Request, { params }: { params: { id: string } })
 }
 
 /** Manual termination is the only navigation-independent way to cancel a run. */
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const runId = new URL(req.url).searchParams.get("runId")?.trim() || undefined;
   const before = ensureProjectRun(params.id);
   if (!before) return NextResponse.json({ error: "project not found" }, { status: 404 });

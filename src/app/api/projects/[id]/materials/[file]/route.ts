@@ -7,8 +7,9 @@ export const dynamic = "force-dynamic";
 /** Serve persisted brand references back to the design-system editor. */
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string; file: string } },
+  { params: paramsPromise }: { params: Promise<{ id: string; file: string }> },
 ) {
+  const params = await paramsPromise;
   const project = loadProject(params.id);
   const record = project?.materials?.find((item) => item.file === params.file);
   if (!record) return new Response("not found", { status: 404 });
